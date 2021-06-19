@@ -13,21 +13,6 @@ app.use(fileUpload());
 // static files
 app.use(express.static('files'));
 
-app.get('/files', (req, res) => {
-  return res.status(200).json(
-    [
-      {
-        name: 'hello.txt',
-        url: 'https://oplab.jp'
-      },
-      {
-        name: 'world.txt',
-        url: 'https://oplab.jp'
-      },
-    ]
-  );
-})
-
 app.post('/upload', (req, res) => {
   let sampleFile;
   let uploadPath;

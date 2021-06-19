@@ -32,7 +32,7 @@ const Form = () => {
         setCurrentFile(undefined);
       })
 
-      setCurrentFile(undefined);
+    setCurrentFile(undefined);
   }
 
   return (
@@ -40,16 +40,16 @@ const Form = () => {
       {currentFile && (
         <div className="progress">
           <div
-            className="progress-bar progress-bar-info progress-bar-striped"
-            role="progressbar"
-            aria-valuenow={progress}
-            aria-valuemin="0"
-            aria-valuemax="100"
-            style={{ width: progress + "%" }}
-          >
+          className="progress-bar progress-bar-info progress-bar-striped"
+          role="progressbar"
+          aria-valuenow={progress}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style={{ width: progress + "%" }}
+        >
             {progress}%
-          </div>
         </div>
+      </div>
       )}
 
       <label className="btn btn-default">
@@ -57,23 +57,28 @@ const Form = () => {
       </label>
 
       <button
-        className="btn btn-success"
-        disabled={!selectedFiles}
-        onClick={upload}
-      >
+      className="btn btn-success"
+      disabled={!selectedFiles}
+      onClick={upload}
+    >
         Upload
-      </button>
+    </button>
 
-      <QRCode 
-        value={'http://localhost:8888/files/'+message} 
-        includeMargin={true}
-        fgColor="#444"
-      />
-
-      <div className="alert alert-light" role="alert">
-        {message}
+    {message && (
+      <div>
+        <div>
+          <QRCode 
+          value={'http://localhost:8888/files/'+message} 
+          includeMargin={true}
+          fgColor="#444"
+        />
+          </div>
+          <div>
+            <code>{message}</code>
+          </div>
+        </div>
+    )}
       </div>
-    </div>
   );
 }
 
