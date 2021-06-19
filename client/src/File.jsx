@@ -1,13 +1,14 @@
 import {
-  BrowserRouter as Router,
   useParams
 } from 'react-router-dom';
+import apiUrl from './helper/apiUrl';
+
 
 const File = () => {
   const { id } = useParams();
   return (
     <div>
-      <img src={`http://localhost:8888/${id}`} />
+      <img src={`${apiUrl}/${id}`} />
       <a href="/">Home</a>
     </div>
   );
