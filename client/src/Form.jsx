@@ -68,7 +68,7 @@ const Form = () => {
       <div>
         <div>
           <QRCode 
-          value={'http://localhost:8888/files/'+message} 
+          value={'http://localhost:3000/file/'+message} 
           includeMargin={true}
           fgColor="#444"
         />
