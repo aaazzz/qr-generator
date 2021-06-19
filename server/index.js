@@ -1,19 +1,39 @@
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const { v4: uuidv4 } = require('uuid');
+const cors = require('cors')
+const morgan = require('morgan');
+
 const app = express();
 
+app.use(morgan('dev'));
+app.use(cors());
 // default options
 app.use(fileUpload());
 // static files
 app.use(express.static('files'));
 
-app.post('/upload', function(req, res) {
+app.get('/files', (req, res) => {
+  return res.status(200).json(
+    [
+      {
+        name: 'hello.txt',
+        url: 'https://oplab.jp'
+      },
+      {
+        name: 'world.txt',
+        url: 'https://oplab.jp'
+      },
+    ]
+  );
+})
+
+app.post('/upload', (req, res) => {
   let sampleFile;
   let uploadPath;
 
   if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
+    return res.status(400).json({message: 'No files were uploaded.' });
   }
 
   // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
@@ -27,7 +47,7 @@ app.post('/upload', function(req, res) {
       return res.status(500).send(err);
 
     res.status(200).json ({
-      file: randString
+      id: randString
     });
   });
 });
