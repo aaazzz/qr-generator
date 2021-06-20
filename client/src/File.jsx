@@ -8,7 +8,7 @@ const File = () => {
   const { id } = useParams();
   return (
     <div>
-      <img src={`${apiUrl}/${id}`} />
+      <img src={`${apiUrl}/api/files/${id}`} />
       <a href="/">Home</a>
     </div>
   );

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import UploadService from './service/FileUploadService';
 import QRCode from 'qrcode.react';
+import apiUrl from './helper/apiUrl'
 
 const Form = () => {
   const [selectedFiles, setSelectedFiles] = useState(undefined);
@@ -68,7 +69,7 @@ const Form = () => {
       <div>
         <div>
           <QRCode 
-          value={'http://localhost:3000/file/'+message} 
+          value={`${apiUrl}/file/${message}`} 
           includeMargin={true}
           fgColor="#444"
         />

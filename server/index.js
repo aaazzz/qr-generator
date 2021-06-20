@@ -12,6 +12,11 @@ app.use(cors());
 app.use(fileUpload());
 // static files
 app.use(express.static('files'));
+app.use("/files", express.static(__dirname + "/files"));
+
+app.get('/upload', (req, res) => {
+  res.status(200).send('Hello');
+});
 
 app.post('/upload', (req, res) => {
   let sampleFile;
