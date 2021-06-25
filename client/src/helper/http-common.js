@@ -1,8 +1,7 @@
 import axios from 'axios';
-import apiUrl from '../helper/apiUrl';
 
 export default axios.create({
-  baseURL: apiUrl,
+  baseURL: window.location.origin,
   headers: {
     "Content-type": "application/json"
   }
