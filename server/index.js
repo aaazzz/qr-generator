@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const { v4: uuidv4 } = require('uuid');
 const cors = require('cors')
 const morgan = require('morgan');
+const path = require('path');
 
 const app = express();
 
@@ -11,14 +12,15 @@ app.use(cors());
 // default options
 app.use(fileUpload());
 // static files
-app.use(express.static('files'));
+// app.use(express.static('files'));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.use("/files", express.static(__dirname + "/files"));
 
-app.get('/upload', (req, res) => {
+app.get('/api/upload', (req, res) => {
   res.status(200).send('Hello');
 });
 
-app.post('/upload', (req, res) => {
+app.post('/api/upload', (req, res) => {
   let sampleFile;
   let uploadPath;
 
@@ -41,6 +43,11 @@ app.post('/upload', (req, res) => {
     });
   });
 });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 
 app.listen(8888);
 console.log('http://localhost:8888!');
