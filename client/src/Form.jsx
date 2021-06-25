@@ -61,7 +61,7 @@ const Form = () => {
       disabled={!selectedFiles}
       onClick={upload}
     >
-        Upload
+      Upload
     </button>
 
     {message && (
@@ -74,7 +74,9 @@ const Form = () => {
         />
           </div>
           <div>
-            <code>{message}</code>
+            <a href={`${window.location.origin}/file/${message}`} >
+              <code>{`${window.location.origin}/file/${message}`}</code>
+            </a>
           </div>
         </div>
     )}
